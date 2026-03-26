@@ -3,10 +3,12 @@ import sqlite3
 from flask import Flask, request, render_template, redirect, url_for, session
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv() # Cargar Variables de Entorno
 
 app = Flask(__name__)
-app.secret_key = os.getenv("FLASK_SECRET_KEY")
+
+# Nunca hardcodear secretos en el código
+app.secret_key = os.getenv("FLASK_SECRET_KEY", os.urandom(32))
 DB_PATH = "db.sqlite"
 
 
