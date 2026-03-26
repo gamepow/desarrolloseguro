@@ -1,0 +1,2 @@
+# | Vuln | Impacto | Corrección
+1 | Secret key hardcodeada | Secuestro de sesión, falsificación de cookies, escalado de privilegios | Mover la clave a variables de entorno (.env) y usar claves aleatorias seguras
