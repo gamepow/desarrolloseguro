@@ -1,8 +1,12 @@
+import os
 import sqlite3
 from flask import Flask, request, render_template, redirect, url_for, session
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = "supersecreto"
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
 DB_PATH = "db.sqlite"
 
 

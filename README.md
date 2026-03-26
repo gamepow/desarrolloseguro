@@ -13,6 +13,7 @@ El objetivo es analizar una aplicación vulnerable, identificar problemas de seg
 1. Instalar dependencias:
 
 ```
+pip install python-dotenv
 pip install flask
 ```
 
