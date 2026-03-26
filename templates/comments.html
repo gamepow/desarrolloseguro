@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comentarios</title>
+</head>
+<body>
+    <h1>Zona de comentarios</h1>
+    <p>Bienvenido, {{ username }}</p>
+    <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+
+    <h2>Nuevo comentario</h2>
+    <form method="POST">
+        <textarea name="content" rows="4" cols="50"></textarea><br><br>
+        <button type="submit">Publicar</button>
+    </form>
+
+    <h2>Comentarios publicados</h2>
+    {% for comment in comments %}
+        <div style="border:1px solid #ccc; margin:10px 0; padding:10px;">
+            <strong>{{ comment["author"] }}</strong><br>
+            {{ comment["content"] | safe }}
+        </div>
+    {% endfor %}
+</body>
+</html>
