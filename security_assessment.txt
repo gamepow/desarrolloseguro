@@ -1,2 +1,3 @@
 # | Vuln | Impacto | Corrección
 1 | Secret key hardcodeada | Secuestro de sesión, falsificación de cookies, escalado de privilegios | Mover la clave a variables de entorno (.env) y usar claves aleatorias seguras
+2 | Exposición de consultas SQL en logs (print query) | Filtración de credenciales y estructura de la BBDD en logs accesibles | Eliminar prints de consultas sensibles o sustituirlos por logging seguro sin datos críticos

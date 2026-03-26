@@ -7,7 +7,7 @@ load_dotenv() # Cargar Variables de Entorno
 
 app = Flask(__name__)
 
-# Nunca hardcodear secretos en el código
+# VULNERABLE: Nunca hardcodear secretos en el código
 app.secret_key = os.getenv("FLASK_SECRET_KEY", os.urandom(32))
 DB_PATH = "db.sqlite"
 
@@ -29,10 +29,16 @@ def index():
         conn = get_db_connection()
         cursor = conn.cursor()
 
-        query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
-        print(f"[DEBUG] Query ejecutada: {query}")
+	# VULNERABLE: antes se construía la query con f-string (SQL Injection)
+        #query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+	#cursor.execute(query)
+        # VULNERABLE: este print exponía credenciales y estructura de la BBDD en logs
+	#print(f"[DEBUG] Query ejecutada: {query}")
 
-        cursor.execute(query)
+        cursor.execute(
+            "SELECT * FROM users WHERE username = ? AND password = ?",
+            (username, password)
+        )
         user = cursor.fetchone()
         conn.close()
 
